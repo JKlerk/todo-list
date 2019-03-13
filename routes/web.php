@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/createlist', 'HomeController@createList');
+Route::get('/delete/{id}', 'HomeController@delete');
+Route::get('/logout', function () {
+	\Auth::logout();
+	return redirect()->route('login');
 });
+
+Route::post('/createlist', 'HomeController@postList');
+
+
