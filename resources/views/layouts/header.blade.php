@@ -6,3 +6,16 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
+@if (Auth::check())
+<div class="flex mt-20 justify-center w-full antialiased">
+    <div class="w-1/2 shadow">
+        <div class="flex bg-blue p-4 rounded-t">
+            <h1 class="text-white"><a class="text-white no-underline" href="/">Todo list</a></h1>
+            <div class="flex flex-1 justify-end my-auto">
+                <div class="my-auto">
+                    <p class="text-white text-xl inline">{{ auth()->user()->name }}</p>
+                    <a href="/logout" class="text-white no-underline"><i class="fas fa-sign-out-alt"></i></a>                             
+                </div>
+            </div>             
+        </div>
+@endif

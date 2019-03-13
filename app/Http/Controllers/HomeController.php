@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lists = App\Lists::all();
-        $tasks = App\Tasks::all();
+        $lists = App\ListModel::all();
+        $tasks = App\TaskModel::all();
         return view('home', compact('lists','tasks'));
     }
 
@@ -34,23 +34,51 @@ class HomeController extends Controller
         return view('createList');
     }
 
+    public function createTask()
+    {
+        $lists = App\ListModel::all();
+        return view('createTask', compact('lists'));
+    }
+
     public function postList(Request $request)
     {
         $request->validate([
             'user_id' => 'required',
             'name' => 'required'
         ]);
-        $list = new App\Lists;
+        $list = new App\ListModel;
         $list->user_id = $request->user_id;
         $list->name = $request->name;
         $list->save();
         return redirect(url('/'));
     }
 
-    public function delete($id)
+     public function postTask(Request $request)
     {
-        $list = App\Lists::find($id);
+        $request->validate([
+            'user_id' => 'required',
+            'body' => 'required',
+            'list_id' => 'required'
+        ]);
+        $task = new App\TaskModel;
+        $task->user_id = $request->user_id;
+        $task->body = $request->body;
+        $task->list_id = $request->list_id;
+        $task->save();
+        return redirect(url('/'));
+    }
+
+    public function deleteList($id)
+    {
+        $list = App\ListModel::find($id);
         $list->delete();
         return redirect(url('/'));        
-    }    
+    }
+
+    public function deleteTask($id)
+    {
+        $task = App\TaskModel::find($id);
+        $task->delete();
+        return redirect(url('/'));        
+    }      
 }

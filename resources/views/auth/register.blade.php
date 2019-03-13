@@ -1,10 +1,9 @@
 @include('layouts.header')
-<form method="POST" action="{{ route('register') }}">
+<form method="POST" action="{{ route('register') }}" autocomplete="off">
     @csrf
-    <div class="animated fadeIn bg-black container mx-auto rounded shadow p-10" style="max-width: 400px;">
+    <div class="mt-20 animated fadeIn container mx-auto rounded shadow border p-10" style="max-width: 400px;">
         <div class="text-white">
-            <h1 class="text-3xl">Register page</h1>
-            <div class="w-full shadow h-1 mt-1 bg-teal mb-5"></div>
+            <h1 class="text-3xl text-black mb-5 text-center">Register page</h1>
             @if ($errors)
                 <div class="text-red rounded shadow mt-2">
                     <span class="invalid-feedback" role="alert">
@@ -14,15 +13,12 @@
                     </span>
                 </div>
             @endif
-            <p class="text-lg mb-1 mt-3">Enter name</p>
-            <input class="rounded w-full p-2 mb-3 text-xl" type="text" placeholder="Username" name="name" value="{{ old('name') }}"/>
-            <p class="text-lg mb-1 mt-3">Enter your E-Mail</p>
-            <input class="rounded w-full p-2 mb-6 text-xl" type="email" placeholder="E-Mail" name="email" value="{{ old('email') }}"/>
-            <p class="text-lg mb-1">Create a password</p>
-            <input class="rounded w-full p-2 mb-6 text-xl" type="password" placeholder="Password" name="password"/>
-            <p class="text-lg mb-1">Confirm password</p>
-            <input class="rounded w-full p-2 mb-6 text-xl" type="password" placeholder="Password" name="password_confirmation" required/>
-            <button type="submit" class="text-xl mt-4 w-full p-3 bg-blue rounded shadow text-white">Register</button>
+            <input class="border w-full p-2 text-xl mt-5" type="text" placeholder="Username" name="name" value="{{ old('name') }}"/>
+            <input class="border w-full p-2 text-xl" type="email" placeholder="E-Mail" name="email" value="{{ old('email') }}"/>
+            <input class="border w-full p-2 text-xl" type="password" placeholder="Password" name="password"/>
+            <input class="border w-full p-2 text-xl" type="password" placeholder="Confirm password" name="password_confirmation" required/>
+            <button type="submit" class="text-xl mt-4 w-full p-3 rounded shadow text-white bg-blue">Register</button>
+            <p class="text-grey mt-5">Already have an account? <a href="/login" class="text-blue no-underline hover:underline">Click here</a></p>
         </div>
     </div>
 </form>
