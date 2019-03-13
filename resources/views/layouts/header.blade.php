@@ -13,8 +13,8 @@
             <h1 class="text-white"><a class="text-white no-underline" href="/">Todo list</a></h1>
             <div class="flex flex-1 justify-end my-auto">
                 <div class="my-auto">
-                    <p class="text-white text-xl inline">{{ auth()->user()->name }}</p>
-                    <a href="/logout" class="text-white no-underline"><i class="fas fa-sign-out-alt"></i></a>                             
+                    <p class="text-white text-xl inline"><a class="text-white no-underline hover:underline" href="/profile">{{ auth()->user()->name }}</a></p>
+                    <a href="/logout" class="text-white no-underline"><i class="fas fa-sign-out-alt hover:underline"></i></a>                             
                 </div>
             </div>             
         </div>

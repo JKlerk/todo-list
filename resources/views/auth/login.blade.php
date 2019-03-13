@@ -5,9 +5,9 @@
         <div class="text-white">
             <h1 class="text-3xl text-black mb-5 text-center">Login page</h1>
             @if ($errors)
-                <div class="text-red rounded shadow mt-2">
+                <div class="text-red rounded mt-2">
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
+                        <strong class="block">{{ $errors->first('email') }}</strong>
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 </div>

@@ -25,8 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         $lists = App\ListModel::all();
-        $tasks = App\TaskModel::all();
+        $tasks = auth()->user()->tasks;
         return view('home', compact('lists','tasks'));
+    }
+
+    public function profile()
+    {
+        $lists = App\ListModel::all();
+        $tasks = App\TaskModel::all();
+        return view('profile', compact('lists','tasks'));
     }
 
     public function createList()

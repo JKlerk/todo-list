@@ -18,7 +18,7 @@
             		<div class="mb-5">
                 		<p class=" text-xl">Enter name of task</p>
                 		<input type="hidden" name="user_id" value='{{ auth()->user()->id }}'">
-            			<input class="border rounded text-xl" type="text" name="body" style="height: 30px; width: 200px">
+            			<input class="border rounded text-xl" type="text" name="body" style="height: 30px; width: 200px" value="{{ old('body') }}">
             		</div>
             		<select class="block text-l w-full border" name="list_id">
             			<option value="" selected disabled>Select a list</option>

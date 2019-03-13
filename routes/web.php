@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/profile', 'HomeController@profile');
 Route::get('/createlist', 'HomeController@createList');
 Route::get('/createtask', 'HomeController@createTask');
 Route::get('/deletelist/{id}', 'HomeController@deleteList');
