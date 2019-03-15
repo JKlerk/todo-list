@@ -1,5 +1,6 @@
 <!doctype html>
-@include('layouts.header')
+{{-- @include('layouts.header') --}}
+@include('layouts.header', ['list' => $lists])
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <body class="animated fadeIn">
         <div class="bg-white rounded-b w-full flex" style="height: 400px;">
@@ -13,6 +14,7 @@
                             </a>
 
                             <div class="flex flex-1 justify-end my-auto">
+                                <a href="{{ url('editlist/' . $list->id) }}" class="no-underline mx-2 text-blue"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ url('deletelist/' . $list->id) }}" class="text-red text-sm font-bold no-underline hover:underline">X</a>
                             </div>
                         </div> 

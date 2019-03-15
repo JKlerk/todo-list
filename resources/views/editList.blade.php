@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <body>
         <div class="bg-white rounded-b w-full" style="height: 400px;">
-			<form class="flex justify-center" method="post" action="{{ url("/createlist") }}">
+			<form class="flex justify-center" method="post" action="{{ url('editlist/' . $list->id) }}">
         		@csrf
         		<div class="">
             		<div class="mt-10">

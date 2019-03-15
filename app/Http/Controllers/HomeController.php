@@ -104,10 +104,27 @@ class HomeController extends Controller
         return redirect(url('/'));
     }
 
+    public function postEditList(Request $request, $id)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'name' => 'required'
+        ]);
+        $list = ListModel::find($id);
+        $list->user_id = $request->user_id;
+        $list->name = $request->name;
+        $list->save();
+        return redirect(url('/'));
+    }
+
     public function deleteList($id)
     {
         $list = ListModel::find($id);
-        $list->delete();
+        $tasks = TaskModel::all();
+
+        \DB::table('tasks')->where('list_id', $id)->delete();
+        $list->delete();        
+        
         return redirect(url('/'));        
     }
 
@@ -133,7 +150,6 @@ class HomeController extends Controller
         ]);
 
         if (\Hash::check(request('current-password'), auth()->user()->password)) {
-            //hoer
             $user = auth()->user();
             $user->password = \Hash::make(request('new-password'));
             $user->save();
