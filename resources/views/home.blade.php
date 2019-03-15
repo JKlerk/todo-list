@@ -23,14 +23,17 @@
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
                         <div class="flex border-b w-1/2">
-                            <p class="">{{ $task->body }}</p>
-                            <a href="{{ url('deletetask/' . $task->id) }}" class="text-red no-underline flex flex-1 my-auto justify-end">X</a>
+                            <p class="">{{ $task->body }}</p>   
+                            <div class="flex flex-1 my-auto justify-end">
+                                <a href="{{ url('edittask/' . $task->id) }}" class="no-underline mx-2 text-blue"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url('deletetask/' . $task->id) }}" class="text-red no-underline hover:underline"><i class="far fa-trash-alt"></i></a>
+                            </div>
                         </div>
                     </div> 
+                    @endforeach
                     <div class="flex justify-center">
                         <a class="text-blue no-underline hover:underline absolute pin-b mb-4" href="/createtask">+ Create new task</a>  
                     </div>
-                    @endforeach
                 @else
                     <div class="mt-10">
                         <p class="text-center">There are no tasks.</p>

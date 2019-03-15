@@ -47,6 +47,19 @@ class HomeController extends Controller
         return view('createTask', compact('lists'));
     }
 
+    public function editList($id)
+    {
+        $list = App\ListModel::find($id);
+        return view('editList', compact('list'));
+    }
+
+    public function editTask($id)
+    {
+        $lists = App\ListModel::all();
+        $task = App\TaskModel::find($id);
+        return view('editTask', compact('task', 'lists'));
+    }
+
     public function postList(Request $request)
     {
         $request->validate([
@@ -68,6 +81,21 @@ class HomeController extends Controller
             'list_id' => 'required'
         ]);
         $task = new App\TaskModel;
+        $task->user_id = $request->user_id;
+        $task->body = $request->body;
+        $task->list_id = $request->list_id;
+        $task->save();
+        return redirect(url('/'));
+    }
+
+    public function postEditTask(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'body' => 'required',
+            'list_id' => 'required'
+        ]);
+        $task = App\TaskModel::find($id);
         $task->user_id = $request->user_id;
         $task->body = $request->body;
         $task->list_id = $request->list_id;

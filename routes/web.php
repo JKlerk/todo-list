@@ -17,6 +17,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile');
 Route::get('/createlist', 'HomeController@createList');
 Route::get('/createtask', 'HomeController@createTask');
+
+Route::get('/editlist/{id}', 'HomeController@editList');
+Route::get('/edittask/{id}', 'HomeController@editTask');
+
 Route::get('/deletelist/{id}', 'HomeController@deleteList');
 Route::get('/deletetask/{id}', 'HomeController@deleteTask');
 
@@ -27,5 +31,8 @@ Route::get('/logout', function () {
 
 Route::post('/createlist', 'HomeController@postList');
 Route::post('/createtask', 'HomeController@postTask');
+
+Route::post('/editlist/{id}', 'HomeController@postEditList');
+Route::post('/edittask/{id}', 'HomeController@postEditTask');
 
 
