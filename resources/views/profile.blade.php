@@ -16,7 +16,7 @@
 	            			<a class="bg-red p-2 rounded text-white hover:shadow hover:bg-e-dark no-underline" href="">Delete account</a>
 	            		</div>
 	            	</div>
-            		<div id="pc" class="hidden w-1/2">
+            		<div id="pc" class="hidden w-1/2 animated">
             			<form class="flex justify-center" method="POST" action="{{ route('password.update') }}" autocomplete="off">
             				@csrf
             				<div>
@@ -39,6 +39,7 @@
         <script type="text/javascript">
         	function passwordChange(){
         		document.getElementById("pc").classList.remove('hidden');
+        		document.getElementById("pc").classList.add('fadeIn');
         	}
         </script>
     </body>

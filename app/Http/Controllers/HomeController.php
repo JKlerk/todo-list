@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App;
+use App\ListModel;
+use App\TaskModel;
 
 class HomeController extends Controller
 {
@@ -24,15 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lists = App\ListModel::all();
+        $lists = ListModel::all();
         $tasks = auth()->user()->tasks;
         return view('home', compact('lists','tasks'));
     }
 
     public function profile()
     {
-        $lists = App\ListModel::all();
-        $tasks = App\TaskModel::all();
+        $lists = ListModel::all();
+        $tasks = TaskModel::all();
         return view('profile', compact('lists','tasks'));
     }
 
@@ -43,20 +44,20 @@ class HomeController extends Controller
 
     public function createTask()
     {
-        $lists = App\ListModel::all();
+        $lists = ListModel::all();
         return view('createTask', compact('lists'));
     }
 
     public function editList($id)
     {
-        $list = App\ListModel::find($id);
+        $list = ListModel::find($id);
         return view('editList', compact('list'));
     }
 
     public function editTask($id)
     {
-        $lists = App\ListModel::all();
-        $task = App\TaskModel::find($id);
+        $lists = ListModel::all();
+        $task = TaskModel::find($id);
         return view('editTask', compact('task', 'lists'));
     }
 
@@ -66,7 +67,7 @@ class HomeController extends Controller
             'user_id' => 'required',
             'name' => 'required'
         ]);
-        $list = new App\ListModel;
+        $list = new ListModel;
         $list->user_id = $request->user_id;
         $list->name = $request->name;
         $list->save();
@@ -80,7 +81,7 @@ class HomeController extends Controller
             'body' => 'required',
             'list_id' => 'required'
         ]);
-        $task = new App\TaskModel;
+        $task = new TaskModel;
         $task->user_id = $request->user_id;
         $task->body = $request->body;
         $task->list_id = $request->list_id;
@@ -95,7 +96,7 @@ class HomeController extends Controller
             'body' => 'required',
             'list_id' => 'required'
         ]);
-        $task = App\TaskModel::find($id);
+        $task = TaskModel::find($id);
         $task->user_id = $request->user_id;
         $task->body = $request->body;
         $task->list_id = $request->list_id;
@@ -105,15 +106,40 @@ class HomeController extends Controller
 
     public function deleteList($id)
     {
-        $list = App\ListModel::find($id);
+        $list = ListModel::find($id);
         $list->delete();
         return redirect(url('/'));        
     }
 
     public function deleteTask($id)
     {
-        $task = App\TaskModel::find($id);
+        $task = TaskModel::find($id);
         $task->delete();
         return redirect(url('/'));        
-    }      
+    }
+
+    public function getSpecificTasks(ListModel $id)
+    {
+        $tasks = TaskModel::where('list_id', $id->id)->where('user_id', auth()->user()->id)->get();
+        $lists = ListModel::all();
+
+        return view('home', compact('tasks', 'lists'));                    
+    }
+
+    public function changePassword(Request $request) {
+        $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|confirmed'
+        ]);
+
+        if (\Hash::check(request('current-password'), auth()->user()->password)) {
+            //hoer
+            $user = auth()->user();
+            $user->password = \Hash::make(request('new-password'));
+            $user->save();
+
+            return redirect()->back();
+
+        }
+    }    
 }

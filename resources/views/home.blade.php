@@ -8,8 +8,13 @@
                     @if(!$lists->isEmpty())
                         @foreach($lists as $list)
                         <div class="flex border-b">
-                            <p class="my-2">{{ $list->name }}</p>
-                            <a href="{{ url('deletelist/' . $list->id) }}" class="text-red no-underline flex flex-1 my-auto justify-end hover:underline">X</a>
+                            <a class="text-black no-underline" href="/list/{{ $list->id }}">
+                                <p class="my-2 hover:underline">{{ $list->name }}</p>
+                            </a>
+
+                            <div class="flex flex-1 justify-end my-auto">
+                                <a href="{{ url('deletelist/' . $list->id) }}" class="text-red text-sm font-bold no-underline hover:underline">X</a>
+                            </div>
                         </div> 
                             <a href="/createlist" class="no-underline hover:underline text-blue absolute pin-b mb-4">+ Add list</a>
                         @endforeach
