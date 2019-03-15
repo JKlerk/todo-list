@@ -1,7 +1,7 @@
 <!doctype html>
 @include('layouts.header')
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <body>
+    <body class="animated fadeIn">
         <div class="bg-white rounded-b w-full flex" style="height: 400px;">
             <div class="w-1/4 border-r relative">
                 <div class="p-5">

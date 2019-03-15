@@ -91,7 +91,7 @@ class HomeController extends Controller
     public function postEditTask(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'user_id' => 'required',
             'body' => 'required',
             'list_id' => 'required'
         ]);
