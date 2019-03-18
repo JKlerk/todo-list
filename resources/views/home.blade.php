@@ -14,14 +14,14 @@
                             </a>
 
                             <div class="flex flex-1 justify-end my-auto">
-                                <a href="{{ url('editlist/' . $list->id) }}" class="no-underline mx-2 text-blue"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url('editlist/' . $list->id) }}" class="no-underline mx-2 text-{{ auth()->user()->color }}"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ url('deletelist/' . $list->id) }}" class="text-red text-sm font-bold no-underline hover:underline">X</a>
                             </div>
                         </div> 
-                            <a href="/createlist" class="no-underline hover:underline text-blue absolute pin-b mb-4">+ Add list</a>
+                            <a href="/createlist" class="no-underline hover:underline text-{{ auth()->user()->color }} absolute pin-b mb-4">+ Add list</a>
                         @endforeach
                     @else
-                        <a href="/createlist" class="no-underline hover:underline text-blue">+ Add list</a>
+                        <a href="/createlist" class="no-underline hover:underline text-{{ auth()->user()->color }}">+ Add list</a>
                     @endif  
                 </div> 
             </div>
@@ -32,20 +32,20 @@
                         <div class="flex border-b w-1/2">
                             <p class="">{{ $task->body }}</p>   
                             <div class="flex flex-1 my-auto justify-end">
-                                <a href="{{ url('edittask/' . $task->id) }}" class="no-underline mx-2 text-blue"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url('edittask/' . $task->id) }}" class="no-underline mx-2 text-{{ auth()->user()->color }}"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ url('deletetask/' . $task->id) }}" class="text-red no-underline hover:underline"><i class="far fa-trash-alt"></i></a>
                             </div>
                         </div>
                     </div> 
                     @endforeach
                     <div class="flex justify-center">
-                        <a class="text-blue no-underline hover:underline absolute pin-b mb-4" href="/createtask">+ Create new task</a>  
+                        <a class="text-{{ auth()->user()->color }} no-underline hover:underline absolute pin-b mb-4" href="/createtask">+ Create new task</a>  
                     </div>
                 @else
                     <div class="mt-10">
                         <p class="text-center">There are no tasks.</p>
                         <div class="flex justify-center">
-                            <a class="text-blue no-underline hover:underline" href="/createtask">Click here to make a task</a>  
+                            <a class="text-{{ auth()->user()->color }} no-underline hover:underline" href="/createtask">Click here to make a task</a>  
                         </div>
                     </div>
                 @endif

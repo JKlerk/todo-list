@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lists = ListModel::all();
+        $lists = ListModel::where('user_id', auth()->user()->id)->get();
         $tasks = auth()->user()->tasks;
         return view('home', compact('lists','tasks'));
     }
@@ -44,7 +44,7 @@ class HomeController extends Controller
 
     public function createTask()
     {
-        $lists = ListModel::all();
+        $lists = ListModel::where('user_id', auth()->user()->id)->get();
         return view('createTask', compact('lists'));
     }
 
@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     public function editTask($id)
     {
-        $lists = ListModel::all();
+        $lists = ListModel::where('user_id', auth()->user()->id)->get();
         $task = TaskModel::find($id);
         return view('editTask', compact('task', 'lists'));
     }
@@ -115,6 +115,14 @@ class HomeController extends Controller
         $list->name = $request->name;
         $list->save();
         return redirect(url('/'));
+    }
+
+    public function changeColor(Request $request)
+    {
+        $user = auth()->user();
+        $user->color = $request->color;
+        $user->save();
+        return redirect()->back();
     }
 
     public function deleteList($id)

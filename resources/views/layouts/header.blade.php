@@ -10,7 +10,7 @@
 @if (Auth::check())
 <div class="flex mt-20 justify-center w-full antialiased">
     <div class="w-1/2 shadow">
-        <div class="flex bg-blue p-4 rounded-t">
+        <div class="flex bg-{{ auth()->user()->color }} p-4 rounded-t">
             <h1 class="text-white"><a class="text-white no-underline" href="/">Todo list {{-- {{ $list[0]['name'] }} --}}</a></h1>
             <div class="flex flex-1 justify-end my-auto">
                 <div class="my-auto">

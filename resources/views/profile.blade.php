@@ -12,8 +12,27 @@
 	            		<p class="mt-5">Profile creation date</p>
 	            		<input type="text" disabled="disabled" class="mt-2 w-full block border py-2 px-2 rounded cursor-not-allowed" value="{{ auth()->user()->created_at }}">
 	            		<div class="mt-5">
-		            		<a class="bg-blue p-2 rounded text-white hover:shadow hover:bg-blue-dark no-underline hover:cursor-pointer" href="#" onclick="passwordChange()">Change password</a>
+		            		<a class="bg-{{ auth()->user()->color }} p-2 rounded text-white hover:shadow hover:bg-{{ auth()->user()->color }}-dark no-underline hover:cursor-pointer" href="#" onclick="passwordChange()">Change password</a>
 	            			<a class="bg-red p-2 rounded text-white hover:shadow hover:bg-e-dark no-underline" href="">Delete account</a>
+	            		</div>
+	            		<div class="mt-5">
+	            			<p>Change color scheme</p>
+	            			<div class="flex mt-2">
+	            				<form name="myform" method="POST" action="{{ url('changecolor/') }}" autocomplete="off">
+	            					@csrf
+	            					<input id="colorStatus" type="hidden" name="color" value="color">
+	            					<button onclick="choose('red')" class="bg-red p-2 rounded-full border-white shadow border cursor-pointer"></button>
+	            					<button onclick="choose('blue')" class="bg-blue p-2 mx-2 rounded-full border-white shadow border cursor-pointer"></button>
+            						<button onclick="choose('green')" class="bg-green p-2 rounded-full border-white shadow border cursor-pointer"></button>
+	            					<script type="text/javascript">
+	            						function choose(choice){ 
+    										document.getElementById("colorStatus").value = choice;
+    										console.log(colorStatus)
+    										document.myform.submit()
+										};
+	            					</script>
+	            				</form>
+	            			</div>
 	            		</div>
 	            	</div>
             		<div id="pc" class="hidden w-1/2 animated">

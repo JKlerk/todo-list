@@ -6,7 +6,7 @@
 			<form class="flex justify-center" method="post" action="{{ url("/createtask") }}">
         		@csrf
         		<div class="">
-        			<p class="text-blue mt-10 text-3xl">Create a new task</p>
+        			<p class="text-{{ auth()->user()->color }} mt-10 text-3xl">Create a new task</p>
 		            @if ($errors)
 		                <div class="text-red rounded my-2">
 		                    <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
         					<option required value="{{ $list->id }}">{{ $list->name }}</option>
         				@endforeach
         			</select>
-            		<button class="bg-blue rounded p-2 px-4 mt-2 text-white shadow" type="submit">Submit</button>
+            		<button class="bg-{{ auth()->user()->color }} hover:shadow hover:bg-{{ auth()->user()->color }}-dark rounded p-2 px-4 mt-2 text-white shadow" type="submit">Submit</button>
             	</div>
         	</form>
         </div>
