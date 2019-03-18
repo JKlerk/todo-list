@@ -13,7 +13,7 @@
 	            		<input type="text" disabled="disabled" class="mt-2 w-full block border py-2 px-2 rounded cursor-not-allowed" value="{{ auth()->user()->created_at }}">
 	            		<div class="mt-5">
 		            		<a class="bg-{{ auth()->user()->color }} p-2 rounded text-white hover:shadow hover:bg-{{ auth()->user()->color }}-dark no-underline hover:cursor-pointer" href="#" onclick="passwordChange()">Change password</a>
-	            			<a class="bg-red p-2 rounded text-white hover:shadow hover:bg-e-dark no-underline" href="">Delete account</a>
+	            			<a class="bg-red p-2 rounded text-white hover:shadow hover:bg-e-dark no-underline" href="{{ url('deleteuser/') }}">Delete account</a>
 	            		</div>
 	            		<div class="mt-5">
 	            			<p>Change color scheme</p>

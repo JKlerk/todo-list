@@ -151,6 +151,13 @@ class HomeController extends Controller
         return redirect(url('/'));        
     }
 
+    public function deleteUser()
+    {
+        $user = auth()->user();
+        $user->delete();
+        return redirect(url('/login'));  
+    }
+
     public function getSpecificTasks(ListModel $id)
     {
         $tasks = TaskModel::where('list_id', $id->id)->where('user_id', auth()->user()->id)->get();

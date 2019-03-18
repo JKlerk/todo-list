@@ -23,6 +23,7 @@ Route::get('/edittask/{id}', 'HomeController@editTask');
 
 Route::get('/deletelist/{id}', 'HomeController@deleteList');
 Route::get('/deletetask/{id}', 'HomeController@deleteTask');
+Route::get('/deleteuser', 'HomeController@deleteUser');
 
 Route::get('/logout', function () {
 	\Auth::logout();
