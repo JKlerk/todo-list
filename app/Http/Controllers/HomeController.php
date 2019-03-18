@@ -161,7 +161,7 @@ class HomeController extends Controller
     public function getSpecificTasks(ListModel $id)
     {
         $tasks = TaskModel::where('list_id', $id->id)->where('user_id', auth()->user()->id)->get();
-        $lists = ListModel::all();
+        $lists = ListModel::where('user_id', auth()->user()->id)->get();
 
         return view('home', compact('tasks', 'lists'));                    
     }
