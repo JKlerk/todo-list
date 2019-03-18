@@ -40,7 +40,7 @@
                                     <div onclick="document.statusForm.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><svg xmlns="http://www.w3.org/2000/svg" height="10px" width="10px" viewBox="0 0 24 24" class="absolute fill-current" style="margin-bottom: 1px; left: 23%; top: 27%;"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path></svg></div>
                                 @endif
                             </form>
-                            <p class="">{{ $task->body }}</p>   
+                            <p class="my-auto">{{ $task->body }}</p>   
                             <div class="flex flex-1 my-auto justify-end">
                                 <a href="{{ url('edittask/' . $task->id) }}" class="no-underline mx-2 text-{{ auth()->user()->color }}"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="{{ url('deletetask/' . $task->id) }}" class="text-red no-underline hover:underline"><i class="far fa-trash-alt"></i></a>
