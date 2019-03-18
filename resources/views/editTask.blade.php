@@ -20,6 +20,11 @@
                 		<input type="hidden" name="user_id" value='{{ auth()->user()->id }}'">
             			<input class="border rounded text-xl" type="text" value="{{ $task->body }}" name="body" style="height: 30px; width: 200px" value="{{ old('body') }}">
             		</div>
+
+            		<div class="mt-2">
+            			<p>Completed?</p>
+            			<input type="checkbox" name="completed" @if($task->completed == 1) checked @endif>
+            		</div>
             		<select class="block text-l w-full border" name="list_id">
             			<option value="" selected disabled>Select a list</option>
         				@foreach($lists as $list)

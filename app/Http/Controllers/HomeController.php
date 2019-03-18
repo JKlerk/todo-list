@@ -100,6 +100,7 @@ class HomeController extends Controller
         $task->user_id = $request->user_id;
         $task->body = $request->body;
         $task->list_id = $request->list_id;
+        $task->completed = $request->completed;
         $task->save();
         return redirect(url('/'));
     }
@@ -123,6 +124,14 @@ class HomeController extends Controller
         $user->color = $request->color;
         $user->save();
         return redirect()->back();
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $task = TaskModel::find($id);
+        $task->completed = $request->completed;
+        $task->save();
+        return redirect(url('/'));
     }
 
     public function deleteList($id)

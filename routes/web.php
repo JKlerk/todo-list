@@ -40,5 +40,7 @@ Route::get('/list/{id}', 'HomeController@getSpecificTasks');
 Route::post('/password/change', 'HomeController@changePassword')->name('password.update');
 
 Route::post('/changecolor', 'HomeController@changeColor');
+Route::post('/changestatus/{id}', 'HomeController@changeStatus');
+
 
 
