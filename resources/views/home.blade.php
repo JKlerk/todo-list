@@ -3,7 +3,7 @@
 @include('layouts.header', ['list' => $lists])
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <body class="animated fadeIn">
-        <div class="bg-white rounded-b w-full flex" style="height: 400px;">
+        <div class="bg-white rounded-b w-full flex" style="min-height: 400px;">
             <div class="w-1/4 border-r relative">
                 <div class="p-5">
                     @if(!$lists->isEmpty())
@@ -27,17 +27,24 @@
             </div>
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
+                    <div class="w-full flex justify-center">
+                        <select name="filter" class="mt-5 border">
+                            <option>All tasks</option>
+                            <option>Non-completed</option>
+                            <option>Completed</option>
+                        </select>
+                    </div>
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
                         <div class="flex border-b w-1/2">
-                            <form name="statusForm" method="POST" action="{{ url('changestatus/'. $task->id) }}" autocomplete="off">
+                            <form name="statusForm{{ $task->id }}" method="POST" action="{{ url('changestatus/'. $task->id) }}" autocomplete="off">
                                 @csrf
                                 @if($task->completed == 0)
                                     <input type="hidden" name="completed" value="1">
-                                    <div onclick="document.statusForm.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><!----></div>
+                                    <div onclick="document.statusForm{{ $task->id    }}.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><!----></div>
                                 @else
                                     <input type="hidden" name="completed" value="0">
-                                    <div onclick="document.statusForm.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><svg xmlns="http://www.w3.org/2000/svg" height="10px" width="10px" viewBox="0 0 24 24" class="absolute fill-current" style="margin-bottom: 1px; left: 23%; top: 27%;"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path></svg></div>
+                                    <div onclick="document.statusForm{{ $task->id }}.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><svg xmlns="http://www.w3.org/2000/svg" height="10px" width="10px" viewBox="0 0 24 24" class="absolute fill-current" style="margin-bottom: 1px; left: 23%; top: 27%;"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path></svg></div>
                                 @endif
                             </form>
                             <p class="my-auto">{{ $task->body }}</p>   
@@ -48,7 +55,7 @@
                         </div>
                     </div> 
                     @endforeach
-                    <div class="flex justify-center">
+                    <div class="flex justify-center mt-10">
                         <a class="text-{{ auth()->user()->color }} no-underline hover:underline absolute pin-b mb-4" href="/createtask">+ Create new task</a>  
                     </div>
                 @else

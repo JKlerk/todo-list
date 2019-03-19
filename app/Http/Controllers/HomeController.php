@@ -130,7 +130,7 @@ class HomeController extends Controller
         $task = TaskModel::find($id);
         $task->completed = $request->completed;
         $task->save();
-        return redirect(url('/'));
+        return redirect()->back();
     }
 
     public function deleteList($id)
@@ -141,14 +141,14 @@ class HomeController extends Controller
         \DB::table('tasks')->where('list_id', $id)->delete();
         $list->delete();        
         
-        return redirect(url('/'));        
+        return redirect()->back();      
     }
 
     public function deleteTask($id)
     {
         $task = TaskModel::find($id);
         $task->delete();
-        return redirect(url('/'));        
+        return redirect()->back();     
     }
 
     public function deleteUser()
