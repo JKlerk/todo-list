@@ -27,13 +27,13 @@
             </div>
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
-                    <div class="w-full flex justify-center">
+{{--                     <div class="w-full flex justify-center">
                         <select name="filter" class="mt-5 border">
                             <option>All tasks</option>
                             <option>Non-completed</option>
                             <option>Completed</option>
                         </select>
-                    </div>
+                    </div> --}}
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
                         <div class="flex border-b w-1/2">

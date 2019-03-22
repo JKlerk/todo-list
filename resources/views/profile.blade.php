@@ -44,7 +44,7 @@
 			            		<input class="mt-2 block border py-2 px-2 rounded" type="password" placeholder="New Password" name="new-password"/>
        							<input class="mt-2 block border py-2 px-2 rounded" type="password" placeholder="Confirm Password" name="new-password_confirmation"/>
        							@if ($errors)
-       								<strong class="text-red">{{ $errors->first('current-password') }}</strong>
+       								<strong class="text-red mt-2">{{ $errors->first('current-password') }}</strong>
        								<strong class="text-red block">{{ $errors->first('new-password') }}</strong>
        								<strong class="text-red">{{ $errors->first('new-password_confirmation') }}</strong>
        							@endif
