@@ -27,13 +27,6 @@
             </div>
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
-{{--                     <div class="w-full flex justify-center">
-                        <select name="filter" class="mt-5 border">
-                            <option>All tasks</option>
-                            <option>Non-completed</option>
-                            <option>Completed</option>
-                        </select>
-                    </div> --}}
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
                         <div class="flex border-b w-1/2">
@@ -41,7 +34,7 @@
                                 @csrf
                                 @if($task->completed == 0)
                                     <input type="hidden" name="completed" value="1">
-                                    <div onclick="document.statusForm{{ $task->id    }}.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><!----></div>
+                                    <div onclick="document.statusForm{{ $task->id }}.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"></div>
                                 @else
                                     <input type="hidden" name="completed" value="0">
                                     <div onclick="document.statusForm{{ $task->id }}.submit()" class="relative border border-grey-light my-auto rounded-full mr-2 text-center text-grey-dark cursor-pointer hover:border-{{ auth()->user()->color }}-dark hover:text-{{ auth()->user()->color }}" style="min-width: 1.25rem; min-height: 1.25rem;"><svg xmlns="http://www.w3.org/2000/svg" height="10px" width="10px" viewBox="0 0 24 24" class="absolute fill-current" style="margin-bottom: 1px; left: 23%; top: 27%;"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path></svg></div>
