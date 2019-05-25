@@ -9,7 +9,7 @@
                     @if(!$lists->isEmpty())
                         @foreach($lists as $list)
                         <div class="flex border-b">
-                            <a class="text-black no-underline" href="/list/{{ $list->id }}">
+                            <a class="text-black no-underline" href="/list/{{ $list->id }}/name">
                                 <p class="my-2 hover:underline">{{ $list->name }}</p>
                             </a>
 
@@ -27,6 +27,10 @@
             </div>
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
+                    <div class="flex justify-center mt-4">
+                        <a class="no-underline text-black mr-2" href="/list/{{ $list->id }}/name">Sort by Name</a>
+                        <a class="no-underline text-black" href="/list/{{ $list->id }}/status">Sort by Status</a>
+                    </div>
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
                         <div class="flex border-b w-1/2">

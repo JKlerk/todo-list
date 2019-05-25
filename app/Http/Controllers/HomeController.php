@@ -158,9 +158,25 @@ class HomeController extends Controller
         return redirect(url('/login'));  
     }
 
-    public function getSpecificTasks(ListModel $id)
+    public function getSpecificTasksName(ListModel $id)
     {
-        $tasks = TaskModel::where('list_id', $id->id)->where('user_id', auth()->user()->id)->get();
+        $tasks = TaskModel::
+            orderBy('body', 'asc')
+            ->where('list_id', $id->id)
+            ->where('user_id', auth()->user()->id)
+            ->get();
+        $lists = ListModel::where('user_id', auth()->user()->id)->get();
+
+        return view('home', compact('tasks', 'lists'));                    
+    }
+
+    public function getSpecificTasksStatus(ListModel $id)
+    {
+        $tasks = TaskModel::
+            orderBy('completed', 'desc')
+            ->where('list_id', $id->id)
+            ->where('user_id', auth()->user()->id)
+            ->get();
         $lists = ListModel::where('user_id', auth()->user()->id)->get();
 
         return view('home', compact('tasks', 'lists'));                    

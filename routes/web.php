@@ -36,7 +36,8 @@ Route::post('/createtask', 'HomeController@postTask');
 Route::post('/editlist/{id}', 'HomeController@postEditList');
 Route::post('/edittask/{id}', 'HomeController@postEditTask');
 
-Route::get('/list/{id}', 'HomeController@getSpecificTasks');
+Route::get('/list/{id}/name', 'HomeController@getSpecificTasksName');
+Route::get('/list/{id}/status', 'HomeController@getSpecificTasksStatus');
 
 Route::post('/password/change', 'HomeController@changePassword')->name('password.update');
 
