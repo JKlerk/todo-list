@@ -1,5 +1,4 @@
 <!doctype html>
-{{-- @include('layouts.header') --}}
 @include('layouts.header', ['list' => $lists])
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <body class="animated fadeIn">
@@ -28,8 +27,8 @@
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
                     <div class="flex justify-center mt-4">
-                        <a class="no-underline text-black mr-2" href="/list/{{ $list->id }}/name">Sort by Name</a>
-                        <a class="no-underline text-black" href="/list/{{ $list->id }}/status">Sort by Status</a>
+                        <a class="no-underline text-black mr-2 hover:underline" href="/list/{{ Request::segment(2) }}/name">Sort by Name</a>
+                        <a class="no-underline text-black hover:underline" href="/list/{{ Request::segment(2) }}/status">Sort by Status</a>
                     </div>
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
