@@ -86,7 +86,7 @@ class HomeController extends Controller
         $task->body = $request->body;
         $task->list_id = $request->list_id;
         $task->save();
-        return redirect(url('/'));
+        return redirect(url('/list/' . $task->list_id . '/name'));
     }
 
     public function postEditTask(Request $request, $id)
