@@ -141,7 +141,7 @@ class HomeController extends Controller
         \DB::table('tasks')->where('list_id', $id)->delete();
         $list->delete();        
         
-        return redirect()->back();      
+        return redirect(url('/'));      
     }
 
     public function deleteTask($id)
