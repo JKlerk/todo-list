@@ -20,7 +20,7 @@
 
             <input class="border w-full p-2 text-xl" type="email" placeholder="E-Mail" name="email" value="{{ old('email') }}"/>
             <input class="border w-full p-2 text-xl" type="password" placeholder="Password" name="password"/>
-            <button type="submit" class="text-xl mt-4 w-full p-3 rounded shadow text-white bg-blue">Login</button>
+            <button type="submit" class="text-xl mt-4 w-full p-3 rounded shadow text-white bg-blue hover:bg-blue-dark">Login</button>
             <p class="text-grey mt-5">Need an account? <a href="/register" class="text-blue no-underline hover:underline">Click here</a></p>
         </div>
     </div>

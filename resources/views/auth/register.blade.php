@@ -22,7 +22,7 @@
             <input class="border w-full p-2 text-xl" type="email" placeholder="E-Mail" name="email" value="{{ old('email') }}"/>
             <input class="border w-full p-2 text-xl" type="password" placeholder="Password" name="password"/>
             <input class="border w-full p-2 text-xl" type="password" placeholder="Confirm password" name="password_confirmation" required/>
-            <button type="submit" class="text-xl mt-4 w-full p-3 rounded shadow text-white bg-blue">Register</button>
+            <button type="submit" class="text-xl mt-4 w-full p-3 rounded shadow text-white bg-blue hover:bg-blue-dark">Register</button>
             <p class="text-grey mt-5">Already have an account? <a href="/login" class="text-blue no-underline hover:underline">Click here</a></p>
         </div>
     </div>
