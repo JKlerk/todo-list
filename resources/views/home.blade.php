@@ -27,8 +27,14 @@
             <div class="w-full relative">
                 @if(!$tasks->isEmpty())
                     <div class="flex justify-center mt-4">
-                        <a class="no-underline text-black mr-2 hover:underline" href="/list/{{ Request::segment(2) }}/name">Sort by Name</a>
-                        <a class="no-underline text-black hover:underline" href="/list/{{ Request::segment(2) }}/status">Sort by Status</a>
+                        @php
+                            $segment = Request::segment(2);
+                            if ($segment == null){
+                                $segment = $list->id;
+                            }
+                        @endphp
+                        <a class="no-underline text-black mr-2 hover:underline" href="/list/{{ $segment }}/name">Sort by Name</a>
+                        <a class="no-underline text-black hover:underline" href="/list/{{ $segment }}/status">Sort by Status</a>
                     </div>
                     @foreach($tasks as $task)
                     <div class="flex justify-center mt-8 w-full">
