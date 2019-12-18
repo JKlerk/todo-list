@@ -13,36 +13,59 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/profile', 'HomeController@profile');
-Route::get('/createlist', 'HomeController@createList');
-Route::get('/createtask', 'HomeController@createTask');
+/*
+|--------------------------------------------------------------------------
+| List Routes
+|--------------------------------------------------------------------------
+|
+| All routes for lists
+| 
+*/
 
-Route::get('/editlist/{id}', 'HomeController@editList');
-Route::get('/edittask/{id}', 'HomeController@editTask');
+Route::get('/', 'PageController@index')->name('home');
+Route::get('/createlist', 'ListController@createList');
+Route::get('/editlist/{id}', 'ListController@editList');
+Route::get('/deletelist/{id}', 'ListController@deleteList');
 
-Route::get('/deletelist/{id}', 'HomeController@deleteList');
-Route::get('/deletetask/{id}', 'HomeController@deleteTask');
-Route::get('/deleteuser', 'HomeController@deleteUser');
+Route::post('/createlist', 'ListController@postList');
+Route::post('/editlist/{id}', 'ListController@postEditList');
 
+
+/*
+|--------------------------------------------------------------------------
+| Task Routes
+|--------------------------------------------------------------------------
+|
+| All routes for tasks
+| 
+*/
+
+Route::get('/list/{id}/name', 'TaskController@getSpecificTasksName');
+Route::get('/list/{id}/status', 'TaskController@getSpecificTasksStatus');
+Route::get('/deletetask/{id}', 'TaskController@deleteTask');
+Route::get('/edittask/{id}', 'TaskController@editTask');
+Route::get('/createtask', 'TaskController@createTask');
+
+Route::post('/createtask', 'TaskController@postTask');
+Route::post('/edittask/{id}', 'TaskController@postEditTask');
+Route::post('/changestatus/{id}', 'TaskController@changeStatus');
+
+
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+|
+| All routes for the user
+| 
+*/
+
+Route::get('/profile', 'UserController@profile');
+Route::get('/deleteuser', 'UserController@deleteUser');
 Route::get('/logout', function () {
 	\Auth::logout();
 	return redirect()->route('login');
 });
 
-Route::post('/createlist', 'HomeController@postList');
-Route::post('/createtask', 'HomeController@postTask');
-
-Route::post('/editlist/{id}', 'HomeController@postEditList');
-Route::post('/edittask/{id}', 'HomeController@postEditTask');
-
-Route::get('/list/{id}/name', 'HomeController@getSpecificTasksName');
-Route::get('/list/{id}/status', 'HomeController@getSpecificTasksStatus');
-
-Route::post('/password/change', 'HomeController@changePassword')->name('password.update');
-
-Route::post('/changecolor', 'HomeController@changeColor');
-Route::post('/changestatus/{id}', 'HomeController@changeStatus');
-
-
-
+Route::post('/changecolor', 'UserController@changeColor');
+Route::post('/password/change', 'UserController@changePassword')->name('password.update');
