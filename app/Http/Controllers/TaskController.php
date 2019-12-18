@@ -52,7 +52,7 @@ class TaskController extends Controller
     public function createTask()
     {
         $lists = ListModel::where('user_id', auth()->user()->id)->get();
-        return view('createTask', compact('lists'));
+        return view('task.createTask', compact('lists'));
     }
 
     /**
@@ -86,7 +86,7 @@ class TaskController extends Controller
     {
         $lists = ListModel::where('user_id', auth()->user()->id)->get();
         $task = TaskModel::find($id);
-        return view('editTask', compact('task', 'lists'));
+        return view('task.editTask', compact('task', 'lists'));
     }
 
     /**

@@ -64,6 +64,6 @@ class UserController extends Controller
     {
         $lists = ListModel::all();
         $tasks = TaskModel::all();
-        return view('profile', compact('lists','tasks'));
+        return view('auth.profile', compact('lists','tasks'));
     }
 }

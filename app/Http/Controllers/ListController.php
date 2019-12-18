@@ -16,7 +16,7 @@ class ListController extends Controller
      */
     public function createList()
     {
-        return view('createList');
+        return view('list.createList');
     }
 
     /**
@@ -28,7 +28,7 @@ class ListController extends Controller
     public function editList($id)
     {
         $list = ListModel::find($id);
-        return view('editList', compact('list'));
+        return view('list.editList', compact('list'));
     }
 
     /**
